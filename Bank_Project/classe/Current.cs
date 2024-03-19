@@ -8,11 +8,10 @@ namespace Bank_Project.classe
         // Champs
         private double _balance;
         private double _creditLine;
-        public Person Owner { get; set; }
-        public string Number { get; set; }
-        
 
         // Propriétés
+        public Person Owner { get; set; }
+        public string Number { get; set; }        
         public double Balance
         {
             get 
@@ -47,6 +46,11 @@ namespace Bank_Project.classe
             }
         }
 
+        // Surcharge opérateur +
+        public static double operator +(double a, Current b)
+        {
+            return a + ((b.Balance > 0) ? b.Balance : 0);
+        }
 
         // Méthode publiques
         public void Withdraw(double amount)
@@ -55,7 +59,6 @@ namespace Bank_Project.classe
             {
                 Console.WriteLine("Error");
             }   
-
             Balance = Balance - amount;
         }
 
@@ -67,6 +70,5 @@ namespace Bank_Project.classe
             }
             Balance = Balance + amount;
         }
-
     }
 }
