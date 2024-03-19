@@ -5,11 +5,14 @@ namespace Bank_Project.classe
 {
     internal class Current
     {
+        // Champs
         private double _balance;
         private double _creditLine;
         public Person Owner { get; set; }
         public string Number { get; set; }
         
+
+        // Propriétés
         public double Balance
         {
             get 
