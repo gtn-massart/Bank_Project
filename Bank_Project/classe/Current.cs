@@ -1,37 +1,14 @@
 ﻿
-using System.Runtime.CompilerServices;
 
 namespace Bank_Project.classe
 {
-    internal class Current
+    public class Current : Account
     {
         // Champs
-        private double _balance;
         private double _creditLine;
 
-        // Propriétés
-        public Person Owner { get; set; }
-        public string Number { get; set; }        
-        public double Balance
-        {
-            get 
-            { 
-                return _balance; 
-            }
-            private set
-            {
-                if (value < -CreditLine)
-                {
-                    Console.WriteLine("Error");
-                }
-                else
-                {
-                    _balance = value;
-                }
-            }
-        }
-
-        public double CreditLine
+        // Propriété  
+        public override double CreditLine
         {
             get 
             {
@@ -46,29 +23,13 @@ namespace Bank_Project.classe
             }
         }
 
-        // Surcharge opérateur +
-        public static double operator +(double a, Current b)
-        {
-            return a + ((b.Balance > 0) ? b.Balance : 0);
-        }
-
         // Méthode publiques
-        public void Withdraw(double amount)
+        public override void Withdraw(double amount)
         {
-            if(amount <= 0)
+            if( Balance - amount >= -_creditLine)
             {
-                Console.WriteLine("Error");
-            }   
-            Balance = Balance - amount;
-        }
-
-        public void Deposit(double amount)
-        {
-            if (amount <= 0)
-            {
-                Console.WriteLine("Error");
+                base.Withdraw(amount);
             }
-            Balance = Balance + amount;
         }
     }
 }

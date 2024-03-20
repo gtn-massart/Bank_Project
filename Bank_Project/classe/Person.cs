@@ -1,7 +1,7 @@
 ﻿
 namespace Bank_Project.classe
 {
-    internal class Person
+    public class Person
     {
 
         // propriétés

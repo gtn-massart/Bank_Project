@@ -4,13 +4,13 @@ namespace Bank_Project.classe
     internal class Bank
     {
         public string Name { get; set; }
-        private Dictionary<string, Current> _listAccount = new Dictionary<string, Current>();
+        private Dictionary<string, Account> _listAccount = new Dictionary<string, Account>();
 
-        public Current this[string number]
+        public Account this[string number]
         {
             get
             {
-                Current account;
+                Account account;
                 _listAccount.TryGetValue(number, out account);
                 return account;
             }
@@ -20,7 +20,7 @@ namespace Bank_Project.classe
             }
         }
 
-        public void Add(Current account)
+        public void Add(Account account)
         {
             if (_listAccount.ContainsKey(account.Number))
             {
@@ -37,6 +37,7 @@ namespace Bank_Project.classe
             {
                 Console.WriteLine("Error : This account does not exist");
                 return;
+                // TODO exception
             }
 
             _listAccount.Remove(number);
@@ -45,16 +46,16 @@ namespace Bank_Project.classe
 
         public double AccountsAssets(Person person)
         {
-            double total = 0;
+            double assets = 0;
 
-            foreach (Current account in _listAccount.Values)
+            foreach (Account account in _listAccount.Values)
             {
                 if (person.Equals(account.Owner)) 
                 {
-                    total += account;
+                    assets += account;
                 }
             }
-            return total;
+            return assets;
         }
     }
 }

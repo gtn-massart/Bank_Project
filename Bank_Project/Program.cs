@@ -15,7 +15,12 @@ Current account2 = new Current();
 account2.Number = "BE95 1679 3154 6428";
 account2.CreditLine = 500;
 account2.Owner = client;
-account2.Deposit(1000);
+account2.Deposit(750);
+
+Saving saving1 = new Saving();
+saving1.Number = "BE98 6847 4578 7998";
+saving1.Owner = client;
+saving1.Deposit(500_000);
 
 bool again = true;
 
@@ -68,6 +73,8 @@ Console.WriteLine("");
 bank.Add(account1);
 
 bank.Add(account2);
+
+bank.Add(saving1);
 
 Console.WriteLine("");
 Console.WriteLine($"L'avoir des compte de {client.FullName} est de {bank.AccountsAssets(client)}");
