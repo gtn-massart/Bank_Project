@@ -5,7 +5,6 @@ namespace Bank_Project.classe
     {
         private double _balance;
         private double _creditLine;
-
         public Person Owner { get; set; }
         public string Number { get; set; }
 
@@ -60,6 +59,14 @@ namespace Bank_Project.classe
                 Console.WriteLine("Error");
             }
             Balance = Balance + amount;
+        }
+
+        protected abstract double CalculationBenefit();
+
+        public void ApplyBenefit()
+        {
+            double benefit = CalculationBenefit();
+            Balance += benefit;
         }
     }
 }

@@ -31,5 +31,14 @@ namespace Bank_Project.classe
                 base.Withdraw(amount);
             }
         }
+
+        protected override double CalculationBenefit()
+        {
+            if (Balance >= 0)
+            {
+                return Balance * (3.0 / 100);
+            }
+            return Balance * (9.75 / 100);
+        }
     }
 }

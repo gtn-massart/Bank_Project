@@ -13,7 +13,13 @@ namespace Bank_Project.classe
         public override void Withdraw(double amount)
         {
             base.Withdraw(amount);
+
             DateLastWithdrawal = DateTime.Now;  
+        }
+
+        protected override double CalculationBenefit()
+        {
+            return Balance * (4.5 / 100);
         }
     }
 }
