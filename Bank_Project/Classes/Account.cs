@@ -1,12 +1,14 @@
 ﻿
+using Bank_Project.Interfaces;
+
 namespace Bank_Project.classe
 {
-    public abstract class Account
+    public abstract class Account : IBanker
     {
         private double _balance;
         private double _creditLine;
-        public Person Owner { get; set; }
-        public string Number { get; set; }
+        public Person Owner { get; private set; }
+        public string Number { get; private set; }
 
         public virtual double CreditLine
         {
@@ -37,7 +39,23 @@ namespace Bank_Project.classe
                 }
             }
         }
+
+        public Account(string number,  Person owner)
+        {
+            this.Number = number;
+            Owner = owner;
+        }
+
+        public Account(string number, Person owner, double balance) : this(number, owner) 
+        {
+            Balance = balance;
+        }
         
+        public Account(Person owner, string number, double creditLine, double balance = 0) : this(number, owner, balance) 
+        {
+            CreditLine = creditLine;
+        }
+
         public static double operator +(double a, Account b)
         {
             return a + ((b.Balance > 0) ? b.Balance : 0);

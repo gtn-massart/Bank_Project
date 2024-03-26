@@ -15,6 +15,13 @@ namespace Bank_Project.classe
             }
         }
         public DateTime BirthDate { get; set; }
+
+        public Person(string firstname, string lastname, DateTime birthDate)
+        {
+            FirstName = firstname ;
+            LastName = lastname ;
+            BirthDate = birthDate ;
+        }
     }
 
 }

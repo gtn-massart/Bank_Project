@@ -14,13 +14,21 @@ namespace Bank_Project.classe
             {
                 return _creditLine; 
             }
-            set 
-            {
-                if(value >= 0)
-                {
-                    _creditLine = value;
-                }
-            }
+        }
+
+        public Current(string number, Person owner) : base(number, owner)
+        {
+
+        }
+
+        public Current(string number, Person owner, double balance) : base(number, owner, balance)
+        {
+
+        }
+
+        public Current(Person owner, string number, double creditLine, double balance = 0) : base(owner, number, creditLine, balance)
+        {
+
         }
 
         // Méthode publiques

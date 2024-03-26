@@ -4,7 +4,7 @@ namespace Bank_Project.Interfaces
 {
     internal interface ICustomer
     {
-        double Solde { get; }
+        double Balance { get; }
         void Deposit(double amount);
         void Withdraw(double amount);
     }
