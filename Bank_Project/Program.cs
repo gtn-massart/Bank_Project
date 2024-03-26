@@ -1,26 +1,27 @@
 ﻿using Bank_Project.classe;
+using Bank_Project.Interfaces;
 
 
-Person client = new Person();
-client.FirstName = "Gaëtan";
-client.LastName = "Massart";
-client.BirthDate = new DateTime(1982, 9, 9);
+Person client = new Person("Gaëtan", "Massart", new DateTime(1982, 9, 9));
+//client.FirstName = "Gaëtan";
+//client.LastName = "Massart";
+//client.BirthDate = new DateTime(1982, 9, 9);
 
-Current account1 = new Current();
-account1.Number = "BE68 5689 2634 4568";
-account1.CreditLine = 500;
-account1.Owner = client;
+Current account1 = new Current(client, "BE68 5689 2634 4568", 500);
+//account1.Number = "BE68 5689 2634 4568";
+//account1.CreditLine = 500;
+//account1.Owner = client;
 
-Current account2 = new Current();
-account2.Number = "BE95 1679 3154 6428";
-account2.CreditLine = 500;
-account2.Owner = client;
-account2.Deposit(750);
+Current account2 = new Current(client, "BE95 1679 3154 6428", 500, 750);
+//account2.Number = "BE95 1679 3154 6428";
+//account2.CreditLine = 500;
+//account2.Owner = client;
+//account2.Deposit(750);
 
-Saving saving1 = new Saving();
-saving1.Number = "BE98 6847 4578 7998";
-saving1.Owner = client;
-saving1.Deposit(500_000);
+Saving saving1 = new Saving("BE98 6847 4578 7998", client, 500_000);
+//saving1.Number = "BE98 6847 4578 7998";
+//saving1.Owner = client;
+//saving1.Deposit(500_000);
 
 bool again = true;
 
@@ -76,5 +77,15 @@ bank.Add(account2);
 
 bank.Add(saving1);
 
-Console.WriteLine("");
+saving1.ApplyBenefit();
+
 Console.WriteLine($"L'avoir des compte de {client.FullName} est de {bank.AccountsAssets(client)}");
+
+IBanker banker = account2;
+ICustomer customer = account2;
+
+customer.Deposit(7);
+Console.WriteLine($"{customer.Balance}");
+
+account2.ApplyBenefit();
+Console.WriteLine($"{banker.Balance} {banker.Owner.FullName}");
